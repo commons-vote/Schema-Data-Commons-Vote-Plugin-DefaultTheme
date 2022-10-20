@@ -20,6 +20,8 @@ readme_from 'DefaultTheme.pm';
 recursive_author_tests('xt');
 requires 'Activity::Commons::Vote::Load' => 0;
 requires 'Backend::DB::Commons::Vote' => 0;
+requires 'Data::Commons::Vote::Theme' => 0;
+requires 'Data::Commons::Vote::ThemeImage' => 0;
 requires 'Error::Pure' => 0;
 requires 'Readonly' => 0;
 requires 'Schema::Data::Plugin' => 0;

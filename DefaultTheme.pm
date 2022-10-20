@@ -6,6 +6,8 @@ use warnings;
 
 use Activity::Commons::Vote::Load;
 use Backend::DB::Commons::Vote;
+use Data::Commons::Vote::Theme;
+use Data::Commons::Vote::ThemeImage;
 use Error::Pure qw(err);
 use Readonly;
 use Unicode::UTF8 qw(decode_utf8);
@@ -72,8 +74,23 @@ sub load {
 		'verbose_cb' => $self->{'verbose_cb'},
 	);
 
+	my $theme = $backend->save_theme(
+		Data::Commons::Vote::Theme->new(
+			'created_by' => $creator,
+			'name' => 'Default theme',
+			'shortcut' => 'default',
+		),
+	);
 	foreach my $commons_image (@COMMONS_IMAGES) {
-		$load->load_commons_image($commons_image);
+		my $image = $load->load_commons_image($commons_image);
+
+		$backend->save_theme_image(
+			Data::Commons::Vote::ThemeImage->new(
+				'created_by' => $creator,
+				'theme_id' => $theme->id,
+				'image' => $image,
+			),
+		);
 	}
 
 	return;
