@@ -1,5 +1,5 @@
 ---
-abstract: 'Schema data for application Commons vote.'
+abstract: 'Schema data plugin with default theme for application Commons vote.'
 author:
   - 'Michal Josef Spacek <skim@cpan.org>'
 build_requires:
